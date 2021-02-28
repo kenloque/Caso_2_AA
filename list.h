@@ -1,6 +1,8 @@
 #ifndef LIST_H_
 #define LIST_H_
 
+#define ptrList List<T>*
+
 #include "node.h"
 
 template <class T>
@@ -12,7 +14,7 @@ private:
 private:
 	ptrNode searchNewLast(){
 		ptrNode auxNode =  this->first;
-		while(auxNode->getNext() == this->last){
+		while(auxNode->getNext() != this->last){
 			auxNode = auxNode->getNext();
 		}
 		return auxNode;
@@ -76,5 +78,4 @@ public:
 		delete auxNode;
 	}
 };
-typedef List<T>*  ptrList;
 #endif

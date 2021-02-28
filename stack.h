@@ -1,20 +1,21 @@
 #ifndef STACK_H_
 #define STACK_H_
 
+#define ptrStack Stack<T>*
+
 #include "list.h"
 
 template <class T>
-class Stack : public List{
+class Stack : public List<T>{
 public:
 	void push(T &pValue){
-		addToEnd(pValue);
+		this->addToEnd(pValue);
 	}
 	
 	T pop(){
-		T element = getLast();
-		deleteLast();
+		T element = this->getLast();
+		this->deleteLast();
 		return element;	
 	}
 };
-typedef Stack<T>*  ptrStack;
 #endif
