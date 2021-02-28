@@ -29,5 +29,5 @@ public:
 		this->next = pNext;
 	}
 };
-typedef Node<T>*  pNode;
+typedef Node<T>*  ptrNode;
 #endif
