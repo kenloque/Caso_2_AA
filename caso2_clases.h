@@ -1,4 +1,6 @@
 #include <iostream>
+#include <list>
+#include "Interfaces.h"
 
 using namespace std;
 
@@ -12,6 +14,20 @@ class Media{
     }
     public:
         void cambiar();
+        /*void cambiar(bool valor, string objeto){
+            if(activo && !valor){
+                cout << "Apagando " << objeto << "..." << endl;
+                activo = valor;
+            }
+            else if (!activo && valor){
+                cout << "Encendiendo " << objeto << "..." << endl;
+                activo = valor;
+            }
+            else{
+                printf("No se puede realizar esta accion ya que el dispositivo ya esta %d.", valor ? "apagado": "encendido");
+            }
+            
+        }*/
 
         bool getActivo(){
             return activo;
@@ -20,7 +36,7 @@ class Media{
 };
 
 
-class Televisor : public Media{
+class Televisor : public Media, IObserver{
     void cambiar(){
         if(activo){
             cout << "Apagando el televisor..." << endl;
@@ -32,9 +48,13 @@ class Televisor : public Media{
         activo = !activo;
     }
 
+    void update(){
+
+    }
+
 };
 
-class Radio : public Media{
+class Radio : public Media, IObserver{
     void cambiar(){
         if(activo){
             cout << "Apagando la radio..." << endl;
@@ -45,13 +65,16 @@ class Radio : public Media{
         }
         activo = !activo;
     }
+    void update(){
+        
+    }
 };
 
-class ReproductorMusica : public Media{
+/*class ReproductorMusica : public Media{
 
-};
+};*/
 
-class Spotify : public ReproductorMusica{
+class Spotify : public Media, IObserver{
     void cambiar(){
         if(activo){
             cout << "Apagando Spotify..." << endl;
@@ -62,9 +85,12 @@ class Spotify : public ReproductorMusica{
         }
         activo = !activo;
     }
+    void update(){
+        
+    }
 };
 
-class YoutubeMusic : public ReproductorMusica{
+class YoutubeMusic : public Media, IObserver{
     void cambiar(){
         if(activo){
             cout << "Apagando YouTube Music..." << endl;
@@ -74,6 +100,28 @@ class YoutubeMusic : public ReproductorMusica{
             
         }
         activo = !activo;
+    }
+    void update(){
+        
+    }
+};
+
+class Boton : IObservable{
+    list <IObserver *> observers;
+    void elegir(int num){
+
+    }
+    void registrar(IObserver * observador){
+        observers.push_back(observador);
+    }
+    void borrar(IObserver * observador){
+        observers.remove(observador);
+    }
+    void notificar(){
+        for (list<IObserver *>::iterator observador = observers.begin(); observador != observers.end(); ++observador){
+            (*observador)->update();
+        }
+        
     }
 };
 
