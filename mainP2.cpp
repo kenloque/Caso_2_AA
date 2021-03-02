@@ -29,16 +29,38 @@ int main(){
  * Datos de salida/resultado de la operacion: Es la funcion main().
 */	
 	int opcion;
-	Boton cliente = Boton(new Televisor());
+	ptrBoton cliente = new Boton(new Televisor());
 	do {
 		mostrarMenu();
 		cin >> opcion;
 		switch ( opcion ) {
-			case 1: cliente.cambiar(new Televisor()); break;
-			case 2: cliente.cambiar(new Radio()); break;
-			case 3: cliente.cambiar(new Spotify()); break;
-			case 4: cliente.cambiar(new YoutubeMusic()); break;
-			case 5:  exit( 1 );
+			case 1:
+				ptrTele strategyTele;
+				strategyTele = new Televisor();
+				strategyTele->registrar(cliente);
+				cliente->cambiar(strategyTele);
+				break;
+			case 2:
+				ptrRadio strategyRadio;
+				strategyRadio = new Radio();
+				strategyRadio->registrar(cliente);
+				cliente->cambiar(strategyRadio);
+				break;
+			case 3:
+				ptrSpotify strategySpotify;
+				strategySpotify = new Spotify();
+				strategySpotify->registrar(cliente);
+				cliente->cambiar(strategySpotify);
+				break;
+			case 4:
+				ptrYoutubeMusic strategyYM;
+				strategyYM = new YoutubeMusic();
+				strategyYM->registrar(cliente);
+				cliente->cambiar(strategyYM);
+				break;
+			case 5:
+				delete cliente; 
+				exit( 1 );
 			default:
 				printf( "Opción no válida\n" );
 				break;

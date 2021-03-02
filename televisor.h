@@ -8,11 +8,11 @@ using namespace std;
 class Televisor : public Media{
 	public:
 		~Televisor(){
-			notify("Apagando el televisor...");
+			notificar("Apagando el televisor...");
 		}
 	
 		void reproducir() override {
-			notify("Encendiendo el televisor...");
+			notificar("Encendiendo el televisor...");
 		}
 };
 

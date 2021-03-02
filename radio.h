@@ -6,11 +6,11 @@
 class Radio : public Media{
     public:
     	~Radio(){
-			notify("Apagando la radio...");
+			notificar("Apagando la radio...");
 		}
     
 		void reproducir() override {
-			notify("Encendiendo la radio...");
+			notificar("Encendiendo la radio...");
 		}
 };
 

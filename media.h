@@ -12,7 +12,7 @@ class Media : public IObservable, IStrategy{
     	list <IObserver *> observers;
     
     public:
-        virtual void reproducir();
+        virtual void reproducir() = 0;
         
         void registrar(IObserver* pObservador){
 		    observers.push_back(pObservador);

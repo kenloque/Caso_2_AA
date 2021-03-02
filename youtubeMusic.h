@@ -6,11 +6,11 @@
 class YoutubeMusic : public Media{
     public:
     	~YoutubeMusic(){
-			notify("Apagando Youtube Music...");
+			notificar("Apagando Youtube Music...");
 		}
     
 		void reproducir() override {
-			notify("Encendiendo Youtube Music...");
+			notificar("Encendiendo Youtube Music...");
 		}
 };
 
