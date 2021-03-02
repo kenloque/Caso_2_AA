@@ -19,7 +19,7 @@ void mostrarMenu(){
 	printf("3.- Spotify\n");
 	printf("4.- Youtube Music\n");
 	printf("5.- Salir\n\n");
-	printf("Elija una opción por favor: ");
+	printf("Elija una fuente por favor: ");
 	fflush(stdout);
 }
 
@@ -28,39 +28,30 @@ int main(){
  * Datos de entrada: Ninguno.
  * Datos de salida/resultado de la operacion: Es la funcion main().
 */	
+	// Declaración de los datos a utilizar
 	int opcion;
-	ptrBoton cliente = new Boton(new Televisor());
+	ptrTele strategyTele= new Televisor();
+	ptrRadio strategyRadio = new Radio();
+	ptrSpotify strategySpotify = new Spotify();
+	ptrYoutubeMusic strategyYM = new YoutubeMusic();
+	ptrBoton cliente = new Boton(strategyTele);
+	
+	// Agregar el cliente como observador de las estrategias
+	strategyTele->registrar(cliente);
+	strategyRadio->registrar(cliente);
+	strategySpotify->registrar(cliente);
+	strategyYM->registrar(cliente);
+	
+	//Ciclo de ejecución
 	do {
 		mostrarMenu();
 		cin >> opcion;
 		switch ( opcion ) {
-			case 1:
-				ptrTele strategyTele;
-				strategyTele = new Televisor();
-				strategyTele->registrar(cliente);
-				cliente->cambiar(strategyTele);
-				break;
-			case 2:
-				ptrRadio strategyRadio;
-				strategyRadio = new Radio();
-				strategyRadio->registrar(cliente);
-				cliente->cambiar(strategyRadio);
-				break;
-			case 3:
-				ptrSpotify strategySpotify;
-				strategySpotify = new Spotify();
-				strategySpotify->registrar(cliente);
-				cliente->cambiar(strategySpotify);
-				break;
-			case 4:
-				ptrYoutubeMusic strategyYM;
-				strategyYM = new YoutubeMusic();
-				strategyYM->registrar(cliente);
-				cliente->cambiar(strategyYM);
-				break;
-			case 5:
-				delete cliente; 
-				exit( 1 );
+			case 1:cliente->cambiar(strategyTele); break;
+			case 2:cliente->cambiar(strategyRadio);	break;
+			case 3:cliente->cambiar(strategySpotify); break;
+			case 4:cliente->cambiar(strategyYM); break;
+			case 5: exit( 1 );
 			default:
 				printf( "Opción no válida\n" );
 				break;

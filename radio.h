@@ -5,12 +5,12 @@
 
 class Radio : public Media{
     public:
-    	~Radio(){
-			notificar("Apagando la radio...");
-		}
-    
 		void reproducir() override {
 			notificar("Encendiendo la radio...");
+		}
+		
+		void detener() override {
+			notificar("Apagando la radio...");
 		}
 };
 

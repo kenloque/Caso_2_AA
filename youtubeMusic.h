@@ -5,12 +5,12 @@
 
 class YoutubeMusic : public Media{
     public:
-    	~YoutubeMusic(){
-			notificar("Apagando Youtube Music...");
-		}
-    
 		void reproducir() override {
 			notificar("Encendiendo Youtube Music...");
+		}
+		
+		void detener() override {
+			notificar("Apagando Youtube Music...");
 		}
 };
 

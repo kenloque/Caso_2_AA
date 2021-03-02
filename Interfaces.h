@@ -20,5 +20,6 @@ class IObservable{
 class IStrategy {
 	public:
 		virtual void reproducir() = 0;
+		virtual void detener() = 0;
 };
 #endif

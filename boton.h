@@ -21,7 +21,7 @@ class Boton : public IObserver{
 		}
 		
 		void cambiar(ptrMedia pStrategy){
-			delete this->strategy;
+			this->strategy->detener();
 			this->strategy = pStrategy;
 			this->strategy->reproducir();
 		}

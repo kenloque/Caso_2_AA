@@ -5,12 +5,12 @@
 
 class Spotify : public Media{
     public:
-    	~Spotify(){
-			notificar("Apagando spotify...");
-		}
-    
 		void reproducir() override {
 			notificar("Encendiendo spotify...");
+		}
+		
+		void detener() override {
+			notificar("Apagando spotify...");
 		}
 };
 
