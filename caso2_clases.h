@@ -4,14 +4,7 @@
 
 using namespace std;
 
-class Media{
-    //Servidor server;
-    protected:
-        bool activo;
-
-    Media(){
-        activo = false;
-    }
+class Media : public IObserver{
     public:
         void cambiar();
         /*void cambiar(bool valor, string objeto){
@@ -26,17 +19,14 @@ class Media{
             else{
                 printf("No se puede realizar esta accion ya que el dispositivo ya esta %d.", valor ? "apagado": "encendido");
             }
-            
         }*/
 
         bool getActivo(){
             return activo;
         }
-
 };
 
-
-class Televisor : public Media, IObserver{
+class Televisor : public Media{
     void cambiar(){
         if(activo){
             cout << "Apagando el televisor..." << endl;
@@ -54,7 +44,7 @@ class Televisor : public Media, IObserver{
 
 };
 
-class Radio : public Media, IObserver{
+class Radio : public Media{
     void cambiar(){
         if(activo){
             cout << "Apagando la radio..." << endl;
@@ -70,11 +60,7 @@ class Radio : public Media, IObserver{
     }
 };
 
-/*class ReproductorMusica : public Media{
-
-};*/
-
-class Spotify : public Media, IObserver{
+class Spotify : public Media{
     void cambiar(){
         if(activo){
             cout << "Apagando Spotify..." << endl;
@@ -90,7 +76,7 @@ class Spotify : public Media, IObserver{
     }
 };
 
-class YoutubeMusic : public Media, IObserver{
+class YoutubeMusic : public Media{
     void cambiar(){
         if(activo){
             cout << "Apagando YouTube Music..." << endl;
@@ -121,7 +107,6 @@ class Boton : IObservable{
         for (list<IObserver *>::iterator observador = observers.begin(); observador != observers.end(); ++observador){
             (*observador)->update();
         }
-        
     }
 };
 
